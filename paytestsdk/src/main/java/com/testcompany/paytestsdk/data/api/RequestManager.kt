@@ -13,7 +13,7 @@ import com.testcompany.paytestsdk.data.model.response.BaseResponse
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
 
-class NetworkManager {
+class RequestManager {
 
     /**
      * Make a GET request and return a parsed object from JSON.

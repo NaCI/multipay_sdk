@@ -5,20 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyLog
-import com.android.volley.toolbox.StringRequest
-import com.google.gson.Gson
 import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.base.BaseFragment
-import com.testcompany.paytestsdk.data.api.NetworkManager
+import com.testcompany.paytestsdk.data.api.RequestManager
 import com.testcompany.paytestsdk.data.model.request.LoginGsm
 import com.testcompany.paytestsdk.data.model.request.LoginInfoGsm
 import com.testcompany.paytestsdk.data.model.response.Login
 import com.testcompany.paytestsdk.databinding.FragmentLoginBinding
-import java.io.UnsupportedEncodingException
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
@@ -44,7 +39,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         headers["device-app-version"] = "4.4.5"
         val loginRequestBody = LoginGsm(LoginInfoGsm("5335600090", "1234567a"))
 
-        val loginRequest = NetworkManager.GsonRequest<LoginGsm, Login>(
+        val loginRequest = RequestManager.GsonRequest<LoginGsm, Login>(
             url,
             loginRequestBody,
             Login::class.java,
