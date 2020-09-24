@@ -10,6 +10,7 @@ import com.android.volley.Response
 import com.android.volley.VolleyLog
 import com.android.volley.toolbox.StringRequest
 import com.google.gson.Gson
+import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.base.BaseFragment
 import com.testcompany.paytestsdk.data.model.request.LoginGsm
@@ -36,7 +37,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val url = "https://test-multinet-multipay-api.inventiv.services/MultiUService/SdkLogin"
+        val url = "${Constants.BASE_URL}/MultiUService/SdkLogin"
 
         val stringRequest = object : StringRequest(
             Request.Method.POST, url,
