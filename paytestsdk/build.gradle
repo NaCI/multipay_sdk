@@ -33,6 +33,7 @@ dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.androidx.app_compat
     implementation deps.androidx.ktx
+    implementation deps.androidx.fragment
     implementation deps.ui.constraint
     implementation deps.ui.material
     implementation deps.network.volley
