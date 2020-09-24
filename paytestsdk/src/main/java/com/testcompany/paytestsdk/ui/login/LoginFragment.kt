@@ -13,8 +13,10 @@ import com.google.gson.Gson
 import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.base.BaseFragment
+import com.testcompany.paytestsdk.data.api.NetworkManager
 import com.testcompany.paytestsdk.data.model.request.LoginGsm
 import com.testcompany.paytestsdk.data.model.request.LoginInfoGsm
+import com.testcompany.paytestsdk.data.model.response.Login
 import com.testcompany.paytestsdk.databinding.FragmentLoginBinding
 import java.io.UnsupportedEncodingException
 
@@ -38,41 +40,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val url = "${Constants.BASE_URL}/MultiUService/SdkLogin"
+        val headers = mutableMapOf<String, String>()
+        headers["device-app-version"] = "4.4.5"
+        val loginRequestBody = LoginGsm(LoginInfoGsm("5335600090", "1234567a"))
 
-        val stringRequest = object : StringRequest(
-            Request.Method.POST, url,
-            Response.Listener<String> { response ->
-                Toast.makeText(requireActivity(), response, Toast.LENGTH_LONG).show()
+        val loginRequest = NetworkManager.GsonRequest<LoginGsm, Login>(
+            url,
+            loginRequestBody,
+            Login::class.java,
+            headers,
+            Response.Listener<Login> { response ->
+                Toast.makeText(requireActivity(), response.toString(), Toast.LENGTH_LONG).show()
             },
             Response.ErrorListener {
-                Toast.makeText(requireActivity(), "FAIL", Toast.LENGTH_LONG).show()
-            }) {
-
-            override fun getHeaders(): MutableMap<String, String> {
-                return super.getHeaders()
+                Toast.makeText(requireActivity(), "FAIL : ${it.message}", Toast.LENGTH_LONG).show()
             }
+        )
 
-            override fun getBody(): ByteArray {
-                val login = LoginGsm(LoginInfoGsm("5335600090", "1234567a"))
-                val requestBody = Gson().toJson(login, LoginGsm::class.java)
-                try {
-                    return requestBody.toByteArray()
-                } catch (uee: UnsupportedEncodingException) {
-                    VolleyLog.wtf(
-                        "Unsupported Encoding while trying to get the bytes of %s using %s",
-                        requestBody,
-                        "utf-8"
-                    )
-                    throw IllegalArgumentException("Erim")
-                }
-            }
-
-            override fun getBodyContentType(): String {
-                return "application/json; charset=utf-8"
-            }
-        }
-
-        PayTest.addToRequestQueue(stringRequest)
+        PayTest.addToRequestQueue(loginRequest)
 
     }
 }

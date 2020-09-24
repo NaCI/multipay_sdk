@@ -1,4 +1,3 @@
-include ':pay_test_sdk_constants'
 include ':paytestsdk'
 include ':app'
 rootProject.name = "PayTest SDK Sample"

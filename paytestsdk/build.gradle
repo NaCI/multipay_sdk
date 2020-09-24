@@ -38,7 +38,7 @@ dependencies {
     implementation deps.ui.material
     implementation deps.network.volley
     implementation deps.network.gson
-    implementation project(":pay_test_sdk_constants")
+    implementation files('libs/pay_test_sdk_constants-release.aar')
     //implementation deps.coil
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
