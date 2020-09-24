@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.PayTestSdk.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Button" parent="TextAppearance.MaterialComponents.Button">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <!--Your custom type style here-->
+    </style>
+
+    <style name="TextAppearance.PayTestSdk.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <!--Your custom type style here-->
+    </style>
+
+</resources>
