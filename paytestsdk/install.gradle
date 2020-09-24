@@ -1,0 +1,39 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.testcompany.paytestsdk' // PACKAGE NAME FROM BINTRAY ACCOUNT
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId 'com.testcompany.paytestsdk' // PACKAGE NAME FROM BINTRAY ACCOUNT
+                artifactId 'paytestsdk' // THE NAME OF YOUR MODULE
+
+                name 'PayTestSdkSample' // YOUR LIBRARY NAME
+                description 'test library payment' // YOUR LIBRARY DESCRIPTION
+                url 'https://github.com/NaCI/pay_test_sdk' // YOUR SITE
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'erimkorkmaz' //YOUR GITHUB ID
+                        name 'erimkorkmaz' //YOUR NAME
+                        email 'erimkorkmaz@gmail.com' //YOUR EMAIL
+                    }
+                }
+                scm {
+                    connection 'https://github.com/NaCI/pay_test_sdk.git' // YOUR GIT REPO
+                    developerConnection 'https://github.com/NaCI/pay_test_sdk.git' // YOUR GIT REPO
+                    url 'https://github.com/NaCI/pay_test_sdk' // YOUR SITE
+
+                }
+            }
+        }
+    }
+}
