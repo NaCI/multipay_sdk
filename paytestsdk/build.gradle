@@ -67,3 +67,5 @@ private String generateVersionName() {
     }
     return versionName
 }
+
+apply from: 'publish.gradle'
