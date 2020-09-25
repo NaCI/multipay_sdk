@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.testcompany.paytestsdk.data.model.request.BaseRequest
 import com.testcompany.paytestsdk.data.model.response.BaseResponse
+import com.testcompany.paytestsdk.data.model.response.ResponseModel
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
 
@@ -18,18 +19,18 @@ class RequestManager {
     /**
      * Make a GET request and return a parsed object from JSON.
      *
-     * @param url URL of the request to make
+     * @param baseUrl URL of the request to make
      * @param clazz Relevant class object, for Gson's reflection
      * @param headers Map of request headers
      */
-    open class GsonRequest<I: BaseRequest, O>(
-        url: String,
+    open class GsonRequest<I: BaseRequest, O: ResponseModel>(
+        baseUrl: String,
         private val requestClass: I,
         private val clazz: Class<O>,
         private val headers: MutableMap<String, String>?,
         private val listener: Response.Listener<O>,
         errorListener: Response.ErrorListener
-    ) : JsonRequest<O>(Method.POST, url, Gson().toJson(requestClass), listener, errorListener) {
+    ) : JsonRequest<O>(Method.POST, "$baseUrl${requestClass.getPath()}", Gson().toJson(requestClass), listener, errorListener) {
 
         private val gson = Gson()
 

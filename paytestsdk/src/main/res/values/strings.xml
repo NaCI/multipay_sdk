@@ -7,4 +7,21 @@
     <string name="Login.ForgetPasswordText"><i>Şifrenizi unuttuysanız buraya basarak <b>tekrar şifre</b> oluşturabilirsiniz.</i></string>
     <string name="Login.Activation.Text">Aktivasyon Koduyla Gir</string>
     <string name="mask_phone">0(5##) ### ## ##</string>
+    <string name="Validation_Name">validation</string>
+    <string name="Validation_Surname">asd</string>
+    <string name="PersonalInfoSettings_Error_EmailFormat" />
+    <string name="Validation_Phone" />
+    <string name="Validation_Password" />
+    <string name="Validation_EmailorGSM" />
+    <string name="validation_error_password_new" />
+    <string name="validation_error_password_old" />
+    <string name="validation_error_password_new_repeat" />
+    <string name="ChangePassword_Error_PasswordsIsNotEqual" />
+    <string name="validation_error_pin" />
+    <string name="Topup_Error_Amount" />
+    <string name="Validation_CardNumber" />
+    <string name="Validation_CVV" />
+    <string name="Validation_Expire" />
+    <string name="Validation_Alias" />
+    <string name="Validation_ActivationCode" />
 </resources>

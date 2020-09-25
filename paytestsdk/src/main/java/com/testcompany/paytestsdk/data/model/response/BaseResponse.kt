@@ -11,7 +11,7 @@ open class BaseResponse(
     var resultCode: Int = 0,
     @field:SerializedName("ResultMessage")
     var resultMessage: String? = null
-) {
+): ResponseModel {
     open fun isSuccess(): Boolean {
         return resultCode == ResultCode.SUCCESS.value
     }
