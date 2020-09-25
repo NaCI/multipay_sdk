@@ -19,5 +19,9 @@ internal object Formatter {
     private const val DATE_FORMAT_SUCCESS = "dd MMMM yyyy"
     private const val TIME_FORMAT_SUCCESS = "HH:mm"
 
+    fun stringToNumeric(str: String) = str.replace("[^\\d]".toRegex(), "")
+
+    fun servicePhoneNumber(phoneNumber: String) = stringToNumeric(phoneNumber).substring(1)
+
     // TODO : complete class
 }

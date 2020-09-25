@@ -8,15 +8,21 @@ import android.widget.Toast
 import com.android.volley.Response
 import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
+import com.testcompany.paytestsdk.R
 import com.testcompany.paytestsdk.base.BaseFragment
 import com.testcompany.paytestsdk.data.api.RequestManager
 import com.testcompany.paytestsdk.data.model.request.LoginGsm
 import com.testcompany.paytestsdk.data.model.request.LoginInfoGsm
 import com.testcompany.paytestsdk.data.model.response.Login
 import com.testcompany.paytestsdk.databinding.FragmentLoginBinding
+import com.testcompany.paytestsdk.util.Formatter
+import com.testcompany.paytestsdk.util.hideKeyboard
+import com.testcompany.paytestsdk.view.listener.MaskWatcher
 
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    private lateinit var maskWatcher: MaskWatcher
 
     companion object {
         fun newInstance(): LoginFragment = LoginFragment().apply {
@@ -34,11 +40,29 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        requireBinding().buttonLogin.setOnClickListener {
+            buttonLoginClicked()
+        }
+    }
+
+    private fun initView() {
+        val maskPhone = getString(R.string.mask_phone)
+        maskWatcher = MaskWatcher(requireBinding().textInputEditEmailOrGsm, maskPhone)
+        requireBinding().textInputEditEmailOrGsm.addTextChangedListener(maskWatcher)
+    }
+
+    private fun buttonLoginClicked() {
+        requireBinding().textInputEditEmailOrGsm.hideKeyboard()
+        requireBinding().textInputEditPassword.hideKeyboard()
+
+        val emailOrGsm = requireBinding().textInputEditEmailOrGsm.text.toString().trim()
+        val password = requireBinding().textInputEditPassword.text.toString().trim()
         val url = "${Constants.BASE_URL}/MultiUService/SdkLogin"
         val headers = mutableMapOf<String, String>()
         headers["device-app-version"] = "4.4.5"
-        val loginRequestBody = LoginGsm(LoginInfoGsm("5335600090", "1234567a"))
-
+        val loginRequestBody =
+            LoginGsm(LoginInfoGsm(Formatter.servicePhoneNumber(emailOrGsm), password))
         val loginRequest = RequestManager.GsonRequest<LoginGsm, Login>(
             url,
             loginRequestBody,
@@ -51,8 +75,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 Toast.makeText(requireActivity(), "FAIL : ${it.message}", Toast.LENGTH_LONG).show()
             }
         )
-
         PayTest.addToRequestQueue(loginRequest)
+    }
 
+    override fun onDestroyView() {
+        requireBinding().textInputEditEmailOrGsm.removeTextChangedListener(maskWatcher)
+        super.onDestroyView()
     }
 }
