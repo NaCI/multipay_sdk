@@ -11,11 +11,13 @@ object PayTest {
 
     private lateinit var requestQueue: RequestQueue
     private lateinit var language: Language
+    lateinit var appContext: Context
 
     @JvmStatic
     fun init(context: Context, language: Language? = null) {
         requestQueue = Volley.newRequestQueue(context.applicationContext)
         this.language = getLanguage(context, language)
+        this.appContext = context
     }
 
     @JvmStatic
@@ -25,4 +27,9 @@ object PayTest {
 
     @JvmStatic
     internal fun language() = language
+
+    @JvmStatic
+    fun setLanguage(language: Language?) {
+        this.language = getLanguage(appContext, language)
+    }
 }

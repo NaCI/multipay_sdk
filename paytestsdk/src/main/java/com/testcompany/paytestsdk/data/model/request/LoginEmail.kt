@@ -8,4 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class LoginEmail(
     @field:SerializedName("loginInfo")
     var loginInfoEmail: LoginInfoEmail
-) : BaseRequest(), Parcelable
+) : BaseRequest(), Parcelable {
+    override fun getPath(): String = "/MultiUService/SdkLogin"
+}

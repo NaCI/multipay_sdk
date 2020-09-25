@@ -25,7 +25,7 @@ data class Money(
     @SerializedName("IsCountable")
     var isCountable: Int = 0
 
-) : Comparable<Money>, Parcelable {
+) : Comparable<Money>, ResponseModel, Parcelable {
 
     init {
         val moneyDouble: Double = money / Formatter.MONEY_DIVISION

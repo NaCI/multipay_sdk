@@ -64,7 +64,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         val loginRequestBody =
             LoginGsm(LoginInfoGsm(Formatter.servicePhoneNumber(emailOrGsm), password))
         val loginRequest = RequestManager.GsonRequest<LoginGsm, Login>(
-            url,
+            baseUrl,
             loginRequestBody,
             Login::class.java,
             headers,
