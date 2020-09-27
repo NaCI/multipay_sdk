@@ -4,14 +4,14 @@ import com.google.gson.JsonElement
 import com.google.gson.annotations.SerializedName
 import com.testcompany.paytestsdk.data.model.type.ResultCode
 
-open class Result(
+data class Result(
     @field:SerializedName("Result")
     var result: JsonElement? = null,
     @field:SerializedName("ResultCode")
     var resultCode: Int = 0,
     @field:SerializedName("ResultMessage")
     var resultMessage: String? = null
-): BaseResponse {
+) : BaseResponse {
     open fun isSuccess(): Boolean {
         return resultCode == ResultCode.SUCCESS.value
     }

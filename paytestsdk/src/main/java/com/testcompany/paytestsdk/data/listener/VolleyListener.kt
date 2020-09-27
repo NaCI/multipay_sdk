@@ -1,14 +1,8 @@
 package com.testcompany.paytestsdk.data.listener
 
-import com.android.volley.NoConnectionError
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.testcompany.paytestsdk.data.error.PayTestError
-import com.testcompany.paytestsdk.data.error.VolleyCancelError
-import com.testcompany.paytestsdk.data.error.VolleyParseError
-import com.testcompany.paytestsdk.data.model.response.BaseResponse
 
-
+//TODO: delete this
+/*
 internal class VolleyListener<T : BaseResponse>(private val callback: NetworkCallback<T>) :
     Response.Listener<T?>, Response.ErrorListener {
 
@@ -54,3 +48,4 @@ internal class VolleyListener<T : BaseResponse>(private val callback: NetworkCal
     }
 
 }
+*/
