@@ -1,9 +1,8 @@
 package com.testcompany.paytestsdk.data.model
 
 import com.android.volley.Request
-import com.google.gson.Gson
-import com.google.gson.JsonIOException
 
+// TODO : kullanılmıyor, eklenmeyecekse silinebilir
 internal class RequestSpec private constructor() {
 
     var baseUrl: String? = null
@@ -20,7 +19,10 @@ internal class RequestSpec private constructor() {
     var priority = 0
         private set
 
-    internal class Builder(private val path: String, private val httpMethod: Int = Request.Method.POST) {
+    internal class Builder(
+        private val path: String,
+        private val httpMethod: Int = Request.Method.POST
+    ) {
         private var headers: Map<String?, String?>? = null
         private var body: String? = null
         private var timeout = 0

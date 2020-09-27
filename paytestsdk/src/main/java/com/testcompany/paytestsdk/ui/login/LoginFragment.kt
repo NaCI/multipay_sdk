@@ -4,15 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.R
 import com.testcompany.paytestsdk.PayTestComponent
 import com.testcompany.paytestsdk.PayTestListener
 import com.testcompany.paytestsdk.base.BaseFragment
+import com.testcompany.paytestsdk.data.error.PayTestError
+import com.testcompany.paytestsdk.data.listener.NetworkCallback
 import com.testcompany.paytestsdk.data.model.request.LoginGsm
 import com.testcompany.paytestsdk.data.model.request.LoginInfoGsm
-import com.testcompany.paytestsdk.data.repository.AuthenticationRepository
+import com.testcompany.paytestsdk.data.model.response.BaseResponse
+import com.testcompany.paytestsdk.data.model.response.Result
 import com.testcompany.paytestsdk.databinding.FragmentLoginBinding
 import com.testcompany.paytestsdk.util.Formatter
 import com.testcompany.paytestsdk.util.hideKeyboard
@@ -70,19 +72,28 @@ internal class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         headers["device-app-version"] = "4.4.5"
         val loginRequestBody =
             LoginGsm(LoginInfoGsm(Formatter.servicePhoneNumber(emailOrGsm), password))
-        val loginRequest = RequestManager.GsonRequest<LoginGsm, Login>(
-            baseUrl,
-            loginRequestBody,
-            Login::class.java,
-            headers,
-            Response.Listener<Login> { response ->
-                Toast.makeText(requireActivity(), response.toString(), Toast.LENGTH_LONG).show()
-            },
-            Response.ErrorListener {
-                Toast.makeText(requireActivity(), "FAIL : ${it.message}", Toast.LENGTH_LONG).show()
-            }
-        )
-        PayTest.addToRequestQueue(loginRequest)
+
+        PayTest.getComponent().requestManager()
+            .loginRequest(loginRequestBody, object : NetworkCallback<Result> {
+                override fun onSuccess(response: Result?) {
+                    Toast.makeText(requireActivity(), response.toString(), Toast.LENGTH_LONG).show()
+                }
+
+                override fun onError(error: PayTestError) {
+                    Toast.makeText(requireActivity(), "FAIL : ${error.message}", Toast.LENGTH_LONG).show()
+                }
+
+            }, object : PayTestListener {
+                override fun <T : BaseResponse> onSuccess(response: T?) {
+                    listener.onSuccess(response)
+                    requireActivity().finish()
+                }
+
+                override fun onError(error: String?, code: Int) {
+
+                }
+
+            })
     }
 
     override fun onDestroyView() {

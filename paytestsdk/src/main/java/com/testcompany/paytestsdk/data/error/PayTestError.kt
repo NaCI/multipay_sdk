@@ -1,11 +1,15 @@
 package com.testcompany.paytestsdk.data.error
 
+import com.testcompany.paytestsdk.data.model.response.Result
+
 class PayTestError : Exception {
     var errorCode = 0
         private set
     var statusCode = 0
         private set
     var data: ByteArray? = null
+        private set
+    var result: Result? = null
         private set
 
     private constructor(detailMessage: String) : super(detailMessage)
@@ -93,6 +97,18 @@ class PayTestError : Exception {
             error.errorCode = ERROR_SERVER
             error.statusCode = statusCode
             error.data = data
+            return error
+        }
+
+        fun payTestErrorInstance(
+            errorMessage: String?,
+            statusCode: Int,
+            result: Result?
+        ): PayTestError {
+            val error = PayTestError(errorMessage ?: "An Error Occured")
+            error.errorCode = ERROR_SERVER
+            error.statusCode = statusCode
+            error.result = result
             return error
         }
 

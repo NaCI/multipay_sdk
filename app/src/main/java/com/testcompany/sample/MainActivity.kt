@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.PayTestListener
+import com.testcompany.paytestsdk.data.model.response.BaseResponse
 
 const val TAG = "MainActivity"
 
@@ -18,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.button).setOnClickListener {
             PayTest.startSDKForSubmitConsumer(this, object : PayTestListener {
-                override fun onSuccess(token: String) {
-                    Log.d(TAG, "onSuccess: $token")
+                override fun <T : BaseResponse> onSuccess(response: T?) {
+                    Log.d(TAG, "onSuccess: $response")
                 }
 
                 override fun onError(error: String?, code: Int) {
