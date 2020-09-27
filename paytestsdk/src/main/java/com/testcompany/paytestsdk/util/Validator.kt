@@ -120,58 +120,58 @@ object Validator {
     fun getValidationError(type: ValidationErrorType): String {
         when {
             type === ValidationErrorType.NAME -> {
-                return PayTest.appContext.getString(R.string.Validation_Name)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Name)
             }
             type === ValidationErrorType.SURNAME -> {
-                return PayTest.appContext.getString(R.string.Validation_Surname)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Surname)
             }
             type === ValidationErrorType.EMAIL -> {
-                return PayTest.appContext.getString(R.string.PersonalInfoSettings_Error_EmailFormat)
+                return PayTest.getComponent().requireAppContext().getString(R.string.PersonalInfoSettings_Error_EmailFormat)
             }
             type === ValidationErrorType.GSM -> {
-                return PayTest.appContext.getString(R.string.Validation_Phone)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Phone)
             }
             type === ValidationErrorType.PASSWORD -> {
-                return PayTest.appContext.getString(R.string.Validation_Password)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Password)
             }
             type === ValidationErrorType.EMAIL_GSM -> {
-                return PayTest.appContext.getString(R.string.Validation_EmailorGSM)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_EmailorGSM)
             }
             type === ValidationErrorType.PASSWORD_NEW -> {
-                return PayTest.appContext.getString(R.string.validation_error_password_new)
+                return PayTest.getComponent().requireAppContext().getString(R.string.validation_error_password_new)
             }
             type === ValidationErrorType.PASSWORD_OLD -> {
-                return PayTest.appContext.getString(R.string.validation_error_password_old)
+                return PayTest.getComponent().requireAppContext().getString(R.string.validation_error_password_old)
             }
             type === ValidationErrorType.PASSWORD_NEW_REPEAT -> {
-                return PayTest.appContext.getString(R.string.validation_error_password_new_repeat)
+                return PayTest.getComponent().requireAppContext().getString(R.string.validation_error_password_new_repeat)
             }
             type === ValidationErrorType.PASSWORDS_NOT_MATCH -> {
-                return PayTest.appContext.getString(R.string.ChangePassword_Error_PasswordsIsNotEqual)
+                return PayTest.getComponent().requireAppContext().getString(R.string.ChangePassword_Error_PasswordsIsNotEqual)
             }
             type === ValidationErrorType.PIN -> {
-                return PayTest.appContext.getString(R.string.validation_error_pin)
+                return PayTest.getComponent().requireAppContext().getString(R.string.validation_error_pin)
             }
             type === ValidationErrorType.TOP_UP_AMOUNT -> {
-                return PayTest.appContext.getString(R.string.Topup_Error_Amount)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Topup_Error_Amount)
             }
             type === ValidationErrorType.NAME_SURNAME -> {
-                return PayTest.appContext.getString(R.string.Validation_Name)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Name)
             }
             type === ValidationErrorType.TOP_UP_CARD_NUMBER -> {
-                return PayTest.appContext.getString(R.string.Validation_CardNumber)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_CardNumber)
             }
             type === ValidationErrorType.TOP_UP_CVV -> {
-                return PayTest.appContext.getString(R.string.Validation_CVV)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_CVV)
             }
             type === ValidationErrorType.TOP_UP_EXPIRE_DATE -> {
-                return PayTest.appContext.getString(R.string.Validation_Expire)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Expire)
             }
             type === ValidationErrorType.ALIAS -> {
-                return PayTest.appContext.getString(R.string.Validation_Alias)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Alias)
             }
             type === ValidationErrorType.ACTIVATION_CODE -> {
-                return PayTest.appContext.getString(R.string.Validation_ActivationCode)
+                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_ActivationCode)
             }
             else -> return StringUtils.EMPTY
         }

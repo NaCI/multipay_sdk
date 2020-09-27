@@ -32,4 +32,4 @@ data class Login (
 
     @field:SerializedName("SessionToken")
     var sessionToken: String?
-) : ResponseModel, Parcelable
+) : BaseResponse, Parcelable

@@ -1,10 +1,15 @@
 package com.testcompany.paytestsdk.data.model
 
-class RequestSpec private constructor() {
+import com.android.volley.Request
+import com.google.gson.Gson
+import com.google.gson.JsonIOException
+
+internal class RequestSpec private constructor() {
+
     var baseUrl: String? = null
     var path: String? = null
         private set
-    var httpMethod = 0
+    var httpMethod = Request.Method.POST
         private set
     var headers: MutableMap<String?, String?>? = null
         private set
@@ -15,7 +20,7 @@ class RequestSpec private constructor() {
     var priority = 0
         private set
 
-    internal class Builder(private val path: String, private val httpMethod: Int) {
+    internal class Builder(private val path: String, private val httpMethod: Int = Request.Method.POST) {
         private var headers: Map<String?, String?>? = null
         private var body: String? = null
         private var timeout = 0

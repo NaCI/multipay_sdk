@@ -15,7 +15,7 @@ abstract class BaseContainerActivity : AppCompatActivity() {
         if (newBase == null) {
             super.attachBaseContext(newBase)
         } else {
-            super.attachBaseContext(updateBaseContextLocale(newBase, PayTest.language().id))
+            super.attachBaseContext(updateBaseContextLocale(newBase, PayTest.getComponent().language().id))
         }
     }
 

@@ -4,29 +4,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.android.volley.Response
 import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.R
+import com.testcompany.paytestsdk.PayTestComponent
+import com.testcompany.paytestsdk.PayTestListener
 import com.testcompany.paytestsdk.base.BaseFragment
-import com.testcompany.paytestsdk.data.api.RequestManager
 import com.testcompany.paytestsdk.data.model.request.LoginGsm
 import com.testcompany.paytestsdk.data.model.request.LoginInfoGsm
-import com.testcompany.paytestsdk.data.model.response.Login
+import com.testcompany.paytestsdk.data.repository.AuthenticationRepository
 import com.testcompany.paytestsdk.databinding.FragmentLoginBinding
 import com.testcompany.paytestsdk.util.Formatter
 import com.testcompany.paytestsdk.util.hideKeyboard
 import com.testcompany.paytestsdk.view.listener.MaskWatcher
 
 
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+internal class LoginFragment : BaseFragment<FragmentLoginBinding>() {
+
+    lateinit var listener: PayTestListener
 
     private lateinit var maskWatcher: MaskWatcher
 
     companion object {
-        fun newInstance(): LoginFragment = LoginFragment().apply {
+        fun newInstance(listener: PayTestListener): LoginFragment = LoginFragment().apply {
             val args = Bundle().apply {
+                putSerializable("listener", listener)
             }
             arguments = args
         }
@@ -38,8 +40,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         savedInstanceState: Bundle?
     ): FragmentLoginBinding = FragmentLoginBinding.inflate(inflater, container, false)
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listener = arguments?.getSerializable("listener") as PayTestListener
         initView()
         requireBinding().buttonLogin.setOnClickListener {
             buttonLoginClicked()
