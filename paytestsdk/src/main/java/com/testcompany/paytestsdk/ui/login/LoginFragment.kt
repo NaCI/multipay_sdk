@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.R
-import com.testcompany.paytestsdk.PayTestComponent
 import com.testcompany.paytestsdk.PayTestListener
 import com.testcompany.paytestsdk.base.BaseFragment
 import com.testcompany.paytestsdk.data.error.PayTestError
@@ -67,9 +68,6 @@ internal class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
         val emailOrGsm = requireBinding().textInputEditEmailOrGsm.text.toString().trim()
         val password = requireBinding().textInputEditPassword.text.toString().trim()
-        val url = "${Constants.BASE_URL}/MultiUService/SdkLogin"
-        val headers = mutableMapOf<String, String>()
-        headers["device-app-version"] = "4.4.5"
         val loginRequestBody =
             LoginGsm(LoginInfoGsm(Formatter.servicePhoneNumber(emailOrGsm), password))
 
