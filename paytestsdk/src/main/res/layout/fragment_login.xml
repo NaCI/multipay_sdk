@@ -92,6 +92,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/button_login" />
 
+            <com.testcompany.paytestsdk.view.PayTestNetworkImageView
+                android:id="@+id/network_image_test"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitCenter"
+                app:error_image_res_id="@drawable/image_cloud_sad"
+                app:default_image_res_id="@drawable/image_sun_smile"
+                app:layout_constraintTop_toBottomOf="@+id/text_forgot_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_activation_code"
                 android:layout_width="match_parent"
@@ -103,7 +115,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_forgot_password"
+                app:layout_constraintTop_toBottomOf="@+id/network_image_test"
                 app:layout_constraintVertical_bias="0.957" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
