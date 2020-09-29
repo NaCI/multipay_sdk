@@ -8,6 +8,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.BasicNetwork
 import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
+import com.android.volley.toolbox.ImageLoader
+import com.testcompany.paytestsdk.data.cache.LruBitmapCache
 import com.testcompany.paytestsdk.data.error.PayTestError
 import com.testcompany.paytestsdk.data.error.VolleyCancelError
 import com.testcompany.paytestsdk.data.error.VolleyParseError
@@ -16,7 +18,7 @@ import com.testcompany.paytestsdk.data.model.request.BaseRequest
 import com.testcompany.paytestsdk.data.model.response.BaseResponse
 import java.io.File
 
-internal class VolleyNetworkAdapter(context: Context) : NetworkAdapter {
+internal class VolleyNetworkAdapter(private val context: Context) : NetworkAdapter {
 
     companion object {
         private const val REQUEST_TAG = "payTestRequestTag"
@@ -24,6 +26,8 @@ internal class VolleyNetworkAdapter(context: Context) : NetworkAdapter {
     }
 
     private val requestQueue: RequestQueue
+    private var mLruBitmapCache: LruBitmapCache? = null
+    private var imageLoader: ImageLoader? = null
 
     init {
         val cacheDir = File(context.cacheDir, "volley")
@@ -38,6 +42,23 @@ internal class VolleyNetworkAdapter(context: Context) : NetworkAdapter {
 
         requestQueue = RequestQueue(DiskBasedCache(cacheDir), network, THREAD_POOL_SIZE)
         requestQueue.start()
+    }
+
+    fun getVolleyImageLoader(): ImageLoader {
+        if (imageLoader == null) {
+            imageLoader = ImageLoader(
+                requestQueue,
+                getVolleyImageCache()
+            )
+        }
+        return requireNotNull(imageLoader)
+    }
+
+    private fun getVolleyImageCache(): LruBitmapCache? {
+        if (mLruBitmapCache == null) {
+            mLruBitmapCache = LruBitmapCache(context)
+        }
+        return mLruBitmapCache
     }
 
     override fun <T : BaseResponse> sendRequest(

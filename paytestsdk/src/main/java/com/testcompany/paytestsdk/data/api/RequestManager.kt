@@ -8,6 +8,8 @@ import com.testcompany.paytestsdk.data.model.response.Result
 internal class RequestManager(private val networkManager: NetworkManager) {
 
 
+    fun getNetworkManager() = networkManager
+
     fun loginRequest(
         loginGsm: LoginGsm,
         networkCallback: NetworkCallback<Result>,

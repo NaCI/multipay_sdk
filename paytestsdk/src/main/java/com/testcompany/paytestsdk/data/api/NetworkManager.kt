@@ -27,6 +27,8 @@ internal class NetworkManager(private val networkAdapter: VolleyNetworkAdapter) 
         const val PRIORITY_IMMEDIATE = 3
     }
 
+    fun getNetworkAdapter() = networkAdapter
+
     fun <T : BaseResponse> sendRequest(
         baseRequest: BaseRequest,
         responseModel: Class<T>,

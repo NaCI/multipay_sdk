@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.naci.pay_test_sdk_constants.Constants
 import com.testcompany.paytestsdk.PayTest
-import com.testcompany.paytestsdk.R
 import com.testcompany.paytestsdk.PayTestListener
+import com.testcompany.paytestsdk.R
 import com.testcompany.paytestsdk.base.BaseFragment
 import com.testcompany.paytestsdk.data.error.PayTestError
 import com.testcompany.paytestsdk.data.listener.NetworkCallback
@@ -60,6 +59,7 @@ internal class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         val maskPhone = getString(R.string.mask_phone)
         maskWatcher = MaskWatcher(requireBinding().textInputEditEmailOrGsm, maskPhone)
         requireBinding().textInputEditEmailOrGsm.addTextChangedListener(maskWatcher)
+        requireBinding().networkImageTest.setImageUrl("https://homepages.cae.wisc.edu/~ece533/images/airplane.png")
     }
 
     private fun buttonLoginClicked() {
@@ -78,13 +78,14 @@ internal class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
 
                 override fun onError(error: PayTestError) {
-                    Toast.makeText(requireActivity(), "FAIL : ${error.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireActivity(), "FAIL : ${error.message}", Toast.LENGTH_LONG)
+                        .show()
                 }
 
             }, object : PayTestListener {
                 override fun <T : BaseResponse> onSuccess(response: T?) {
                     listener.onSuccess(response)
-                    requireActivity().finish()
+//                    requireActivity().finish()
                 }
 
                 override fun onError(error: String?, code: Int) {
