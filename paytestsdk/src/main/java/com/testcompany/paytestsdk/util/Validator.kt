@@ -120,7 +120,7 @@ object Validator {
     fun getValidationError(type: ValidationErrorType): String {
         when {
             type === ValidationErrorType.NAME -> {
-                return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Name)
+                return PayTest.getComponent().getString(R.string.Validation_Name)
             }
             type === ValidationErrorType.SURNAME -> {
                 return PayTest.getComponent().requireAppContext().getString(R.string.Validation_Surname)

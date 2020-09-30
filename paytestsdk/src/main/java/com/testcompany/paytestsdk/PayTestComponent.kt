@@ -2,6 +2,8 @@ package com.testcompany.paytestsdk
 
 import android.content.Context
 import android.content.Intent
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import com.google.gson.Gson
 import com.testcompany.paytestsdk.data.api.NetworkAdapter
 import com.testcompany.paytestsdk.data.api.NetworkManager
@@ -43,5 +45,9 @@ internal class PayTestComponent(
         val intent = Intent(context, LoginActivity::class.java)
         intent.putExtra("listener", listener)
         context.startActivity(intent)
+    }
+
+    fun getString(@StringRes resId: Int, vararg args: String): String {
+        return appContext.getString(resId, args)
     }
 }
