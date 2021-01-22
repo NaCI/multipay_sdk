@@ -19,6 +19,7 @@ android {
 
         buildConfigField "String", "END_POINT", "\"${end_point}\""
         buildConfigField "String", "API_SERVICE", "\"${api_service}\""
+        buildConfigField "String", "API_TOKEN", "\"${api_token}\""
     }
 
     buildTypes {
@@ -47,7 +48,6 @@ dependencies {
     implementation deps.ui.material
     implementation deps.network.volley
     implementation deps.network.gson
-    implementation project(":pay_test_sdk_constants")
     //implementation deps.coil
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

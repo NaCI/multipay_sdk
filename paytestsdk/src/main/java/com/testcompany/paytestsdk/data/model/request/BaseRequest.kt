@@ -1,13 +1,13 @@
 package com.testcompany.paytestsdk.data.model.request
 
 import com.google.gson.annotations.SerializedName
-import com.naci.pay_test_sdk_constants.Constants
+import com.testcompany.paytestsdk.BuildConfig
 import com.testcompany.paytestsdk.PayTest
 import com.testcompany.paytestsdk.data.api.NetworkManager.Companion.PRIORITY_NORMAL
 
 internal abstract class BaseRequest(
     @field:SerializedName("AppToken")
-    var appToken: String = Constants.TOKEN,
+    var appToken: String = BuildConfig.API_TOKEN,
     @field:SerializedName("LanguageCode")
     var languageCode: String = PayTest.getComponent().language().code,
     var priority: Int = PRIORITY_NORMAL
