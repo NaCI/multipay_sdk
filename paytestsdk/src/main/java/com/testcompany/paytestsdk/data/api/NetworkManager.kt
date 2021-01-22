@@ -1,5 +1,6 @@
 package com.testcompany.paytestsdk.data.api
 
+import com.testcompany.paytestsdk.BuildConfig
 import com.testcompany.paytestsdk.PayTestListener
 import com.testcompany.paytestsdk.data.error.PayTestError
 import com.testcompany.paytestsdk.data.listener.NetworkCallback
@@ -15,11 +16,11 @@ internal class NetworkManager(private val networkAdapter: VolleyNetworkAdapter) 
     private val HEADER_KEY_OS_VERSION = "device-os-version"
     private val HEADER_KEY_APP_VERSION = "device-app-version"
 
-    private val baseUrl = "https://test-multinet-multipay-api.inventiv.services"
+    private val baseUrl = BuildConfig.END_POINT
 
     companion object {
         private const val TAG = "NetworkManager"
-        internal const val apiServicePath = "/MultiUService"
+        internal const val apiServicePath = BuildConfig.API_SERVICE
         internal const val DEFAULT_TIMEOUT_MILLIS = 20000
         const val PRIORITY_LOW = 0
         const val PRIORITY_NORMAL = 1
